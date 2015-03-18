@@ -5,6 +5,7 @@ django-chunkator
 Chunk large querysetsinto small chunks, and iterate over them without killing
 your RAM.
 
+.. image:: https://travis-ci.org/novafloss/django-chunkator.svg
 
 Usage::
 

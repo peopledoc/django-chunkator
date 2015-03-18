@@ -1,11 +1,11 @@
 """
-Toolbox for chunking / slicing querysets / collections
+Toolbox for chunking / slicing querysets
 """
 
 
 def chunkator(queryset, chunk_size):
     """
-    Yield over an iterable by chunks.
+    Yield over a queryset by chunks.
 
     This method does not involve counting elements or measuring the iterable
     length. We're saving at least a ``count()`` query on QuerySets, or a

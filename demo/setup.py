@@ -23,7 +23,7 @@ ENTRY_POINTS = {
 
 if __name__ == '__main__':  # Don't run setup() when we import this module.
     setup(name=NAME,
-          version='0.0.1',
+          version='0.0.2',
           description=DESCRIPTION,
           classifiers=CLASSIFIERS,
           keywords=' '.join(KEYWORDS),

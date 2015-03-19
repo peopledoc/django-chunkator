@@ -11,9 +11,12 @@ def chunkator(queryset, chunk_size):
     length. We're saving at least a ``count()`` query on QuerySets, or a
     CPU-and-RAM-consuming ``len(queryset)`` query.
     """
-    pk = 0
+    pk = None
     while True:
-        page = queryset.filter(pk__gt=pk).order_by('pk')[:chunk_size]
+        queryset = queryset.order_by('pk')
+        if pk:
+            queryset = queryset.filter(pk__gt=pk)
+        page = queryset[:chunk_size]
         nb_items = 0
         for item in page:
             pk = item.pk

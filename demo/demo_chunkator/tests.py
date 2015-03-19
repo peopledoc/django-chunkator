@@ -1,6 +1,6 @@
 from django.test import TestCase
 from chunkator import chunkator
-from demo_chunkator.models import Book
+from demo_chunkator.models import Book, User
 
 
 class ChunkatorTestCase(TestCase):
@@ -73,3 +73,20 @@ class ChunkatorOrderTestCase(TestCase):
         items = list(chunkator(Book.objects.all(), 10))
         self.assertEquals(items[0].pk, 1)
         self.assertEquals(items[1].pk, 2)
+
+
+class ChunkatorUUIDTestCase(TestCase):
+
+    def setUp(self):
+        super(ChunkatorUUIDTestCase, self).setUp()
+        User.objects.create(name='Terry Pratchett')
+        User.objects.create(name='Iain Banks')
+
+    def test_chunk_uuid(self):
+        result = []
+        chunks = chunkator(User.objects.all(), 10)
+        for item in chunks:
+            self.assertTrue(isinstance(item, User))
+            result.append(item.pk)
+        self.assertEquals(len(result), 2)
+        self.assertEquals(len(result), len(set(result)))  # no duplicates

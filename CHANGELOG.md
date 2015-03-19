@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.0.3
+
+* allow "non-integer" pk (#1)
+
+
 ## v0.0.2
 
 (released on 2015-03-19)

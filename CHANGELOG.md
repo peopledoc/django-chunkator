@@ -2,6 +2,8 @@
 
 ## v0.0.2
 
+(released on 2015-03-19)
+
 * tox and travis setup,
 * a few more tests
 

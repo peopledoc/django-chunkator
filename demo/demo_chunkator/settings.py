@@ -18,7 +18,7 @@ ROOT_URLCONF = 'demo_chunkator.urls'
 # Fake secret key.
 SECRET_KEY = 'Fake secret.'
 
-TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

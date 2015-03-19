@@ -55,3 +55,21 @@ class ChunkatorTestCase(TestCase):
             chunks = chunkator(Book.objects.all(), 10)
             for item in chunks:
                 self.assertTrue(isinstance(item, Book))
+
+
+class ChunkatorOrderTestCase(TestCase):
+    def setUp(self):
+        super(ChunkatorOrderTestCase, self).setUp()
+        Book.objects.create(
+            title="Guards! Guards!",
+            author="Pratchett, Terry"
+        )
+        Book.objects.create(
+            title="The Player of Games",
+            author="Banks, Iain"
+        )
+
+    def test_order_by_default(self):
+        items = list(chunkator(Book.objects.all(), 10))
+        self.assertEquals(items[0].pk, 1)
+        self.assertEquals(items[1].pk, 2)

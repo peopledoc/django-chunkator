@@ -2,7 +2,9 @@
 
 ## v0.0.3
 
-* allow "non-integer" pk (#1)
+(released on 2015-03-19)
+
+* allow "non-integer" pk (#1), such as UUIDs.
 
 
 ## v0.0.2

@@ -64,7 +64,7 @@ entry_points = {}
 
 if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
     setup(name=name,
-          version='0.0.3',
+          version='0.0.4',
           description="""Chunk large querysetsinto small chunks, and iterate over them without killing your RAM.""",  # noqa
           long_description=readme,
           classifiers=[

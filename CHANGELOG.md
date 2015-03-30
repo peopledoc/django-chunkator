@@ -1,8 +1,8 @@
 # Changelog
 
-## master
+## v0.0.4
 
-(unreleased)
+(released on 2015-03-30)
 
 * Allow the usage of ``values()`` instead of the usual queryset (#2 and #3)
 

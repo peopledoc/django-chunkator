@@ -19,8 +19,21 @@ it can be overridden) and this pk has to be unique. ``django-chunkator`` has
 been tested with Postgresql and SQLite, using regular PKs and UUIDs as primary
 keys.
 
-Warning:
+You can also use ``values()``::
 
-* This will not **accelerate** your process. Instead of having one BIG query,
-  you'll have several small queries. This will save your RAM instead, because
-  you'll not load a huge queryset result before looping on it.
+    from chunkator import chunkator
+    for item in chunkator(LargeModel.objects.values('pk', 'name'), 200):
+        do_something(item)
+
+.. important::
+
+    If you're using ``values`` you **have** to add at least your "pk" field to
+    the values, otherwise, the chunkator will throw an error.
+
+----
+
+.. warning::
+
+    This will not **accelerate** your process. Instead of having one BIG query,
+    you'll have several small queries. This will save your RAM instead, because
+    you'll not load a huge queryset result before looping on it.

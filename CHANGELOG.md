@@ -4,7 +4,7 @@
 
 (unreleased)
 
-* Allow the usage of ``values()`` instead of the usual queryset (#2)
+* Allow the usage of ``values()`` instead of the usual queryset (#2 and #3)
 
 ## v0.0.3
 

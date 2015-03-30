@@ -1,6 +1,7 @@
 """
 Toolbox for chunking / slicing querysets
 """
+from django.db.models.query import ValuesQuerySet
 
 
 def chunkator(queryset, chunk_size):
@@ -19,7 +20,10 @@ def chunkator(queryset, chunk_size):
         page = queryset[:chunk_size]
         nb_items = 0
         for item in page:
-            pk = item.pk
+            if isinstance(queryset, ValuesQuerySet):
+                pk = item["pk"]
+            else:
+                pk = item.pk
             nb_items += 1
             yield item
         if nb_items < chunk_size:

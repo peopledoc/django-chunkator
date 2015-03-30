@@ -90,3 +90,20 @@ class ChunkatorUUIDTestCase(TestCase):
             result.append(item.pk)
         self.assertEquals(len(result), 2)
         self.assertEquals(len(result), len(set(result)))  # no duplicates
+
+
+class ChunkatorValuesTestCase(TestCase):
+
+    def setUp(self):
+        super(ChunkatorValuesTestCase, self).setUp()
+        User.objects.create(name='Wonder Woman')
+        User.objects.create(name='Wolverine')
+
+    def test_chunk_uuid(self):
+        result = []
+        chunks = chunkator(User.objects.all().values("pk", "name"), 10)
+        for item in chunks:
+            self.assertTrue(isinstance(item, dict))
+            result.append(item['pk'])
+        self.assertEquals(len(result), 2)
+        self.assertEquals(len(result), len(set(result)))  # no duplicates

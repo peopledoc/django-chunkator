@@ -4,6 +4,15 @@ Toolbox for chunking / slicing querysets
 from django.db.models.query import ValuesQuerySet
 
 
+class MissingPkFieldException(Exception):
+    """
+    Exception raised when the "pk" field is missing in the query.
+
+    (when using ``values()``).
+    """
+    pass
+
+
 def chunkator(queryset, chunk_size):
     """
     Yield over a queryset by chunks.
@@ -13,6 +22,10 @@ def chunkator(queryset, chunk_size):
     CPU-and-RAM-consuming ``len(queryset)`` query.
     """
     pk = None
+    if isinstance(queryset, ValuesQuerySet):
+        if "pk" not in queryset._fields:
+            raise MissingPkFieldException("The values() call must include the `pk` field")  # noqa
+
     while True:
         queryset = queryset.order_by('pk')
         if pk:

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from chunkator import chunkator
+from chunkator import chunkator, MissingPkFieldException
 from demo_chunkator.models import Book, User
 
 
@@ -107,3 +107,8 @@ class ChunkatorValuesTestCase(TestCase):
             result.append(item['pk'])
         self.assertEquals(len(result), 2)
         self.assertEquals(len(result), len(set(result)))  # no duplicates
+
+    def test_chunk_missing_pk(self):
+        with self.assertRaises(MissingPkFieldException):
+            result = chunkator(User.objects.all().values("name"), 10)
+            result.next()

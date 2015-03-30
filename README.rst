@@ -28,8 +28,7 @@ You can also use ``values()``::
 .. important::
 
     If you're using ``values`` you **have** to add at least your "pk" field to
-    the values, otherwise, the chunkator will throw a
-    :class:`MissingPkFieldException`.
+    the values, otherwise, the chunkator will throw a `MissingPkFieldException`.
 
 ----
 

@@ -13,7 +13,7 @@ class MissingPkFieldException(Exception):
     pass
 
 
-def chunkator(queryset, chunk_size):
+def chunkator(source_qs, chunk_size, query_log=None):
     """
     Yield over a queryset by chunks.
 
@@ -22,15 +22,18 @@ def chunkator(queryset, chunk_size):
     CPU-and-RAM-consuming ``len(queryset)`` query.
     """
     pk = None
-    if isinstance(queryset, ValuesQuerySet):
-        if "pk" not in queryset._fields:
+    if isinstance(source_qs, ValuesQuerySet):
+        if "pk" not in source_qs._fields:
             raise MissingPkFieldException("The values() call must include the `pk` field")  # noqa
 
+    source_qs = source_qs.order_by('pk')
+    queryset = source_qs
     while True:
-        queryset = queryset.order_by('pk')
         if pk:
-            queryset = queryset.filter(pk__gt=pk)
+            queryset = source_qs.filter(pk__gt=pk)
         page = queryset[:chunk_size]
+        if query_log is not None:
+            query_log.write(unicode(page.query) + "\n")
         nb_items = 0
         for item in page:
             if isinstance(queryset, ValuesQuerySet):

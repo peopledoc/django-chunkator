@@ -1,3 +1,5 @@
+import cStringIO
+
 from django.test import TestCase
 from chunkator import chunkator, MissingPkFieldException
 from demo_chunkator.models import Book, User
@@ -112,3 +114,27 @@ class ChunkatorValuesTestCase(TestCase):
         with self.assertRaises(MissingPkFieldException):
             result = chunkator(User.objects.all().values("name"), 10)
             result.next()
+
+
+class ChunkatorWhereTest(TestCase):
+    def setUp(self):
+        super(ChunkatorWhereTest, self).setUp()
+        User.objects.create(name='Wonder Woman')
+        User.objects.create(name='Wolverine')
+        User.objects.create(name='ChuckNorris')
+
+    def test_query_log(self):
+        query_log_output = cStringIO.StringIO()
+        qs = User.objects.all()
+        # We loop here only to dig into the generator and force execution
+        for item in chunkator(qs, 1, query_log_output):
+            _ = item  # noqa
+        contents = query_log_output.getvalue()
+        query_log_output.close()
+        queries = contents.split('\n')
+        self.assertEquals(len(queries), 5, queries)
+        queries = queries[:4]  # the last one is empty string
+        for query in queries:
+            # Should be 0 for the first query
+            # Should occur once for other queries
+            self.assertTrue(query.count('."uuid" >') <= 1, query)

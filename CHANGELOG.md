@@ -2,7 +2,7 @@
 
 ## master
 
-(nothing has changed yet)
+* Bugfix: removed multiple "pk > 'x'" condition statements (#4).
 
 ## v0.0.4
 

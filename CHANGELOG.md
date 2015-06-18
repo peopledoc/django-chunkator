@@ -1,5 +1,9 @@
 # Changelog
 
+## master
+
+* Nothing changed yet.
+
 ## v0.0.5
 
 (released on 2015-06-18)

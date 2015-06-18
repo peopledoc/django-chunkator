@@ -1,6 +1,8 @@
 # Changelog
 
-## master
+## v0.0.5
+
+(released on 2015-06-18)
 
 * Bugfix: removed multiple "pk > 'x'" condition statements (#4).
 

@@ -2,7 +2,7 @@
 
 ## master
 
-* Nothing changed yet.
+* Django 1.8 compatibility, thank you ``tox`` (#5).
 
 ## v0.0.5
 

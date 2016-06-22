@@ -58,6 +58,12 @@ class ChunkatorTestCase(TestCase):
             for item in chunks:
                 self.assertTrue(isinstance(item, Book))
 
+        # If the chunk size is bigger than the number of items, only one query.
+        with self.assertNumQueries(1):
+            chunks = chunkator(Book.objects.all(), 1000)
+            for item in chunks:
+                self.assertTrue(isinstance(item, Book))
+
 
 class ChunkatorOrderTestCase(TestCase):
     def setUp(self):

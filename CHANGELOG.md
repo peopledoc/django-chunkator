@@ -1,5 +1,9 @@
 # Changelog
 
+## master (unreleased)
+
+- Nothing changed yet.
+
 ## 1.0.0 (2016-06-23)
 
 * Django 1.8 compatibility, thank you ``tox`` (#5).

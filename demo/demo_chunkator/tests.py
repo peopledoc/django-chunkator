@@ -113,7 +113,7 @@ class ChunkatorValuesTestCase(TestCase):
     def test_chunk_missing_pk(self):
         with self.assertRaises(MissingPkFieldException):
             result = chunkator(User.objects.all().values("name"), 10)
-            result.next()
+            six.next(result)
 
 
 class ChunkatorWhereTest(TestCase):

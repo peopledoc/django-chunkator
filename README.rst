@@ -43,3 +43,9 @@ You can also use ``values()``:
     This will not **accelerate** your process. Instead of having one BIG query,
     you'll have several small queries. This will save your RAM instead, because
     you'll not load a huge queryset result before looping on it.
+
+
+License
+=======
+
+MIT License.

@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## 1.0.0 (2016-06-23)
 
 * Django 1.8 compatibility, thank you ``tox`` (#5).
 * Compatible with Python 3 (tested with Python 3.4), thx @wo0dyn (#6).

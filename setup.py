@@ -65,7 +65,7 @@ entry_points = {}
 if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
     setup(name=name,
           version='0.0.6.dev',
-          description="""Chunk large querysetsinto small chunks, and iterate over them without killing your RAM.""",  # noqa
+          description="""Chunk large QuerySets into small chunks, and iterate over them without killing your RAM.""",  # noqa
           long_description=readme,
           classifiers=[
               'Environment :: Web Environment',
@@ -85,8 +85,8 @@ if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
               'License :: OSI Approved :: MIT License',
           ],
           keywords='',
-          author='Novapost',
-          author_email='rd@novapost.fr',
+          author='PeopleDoc',
+          author_email='rd@people-doc.com',
           url='https://github.com/novafloss/%s' % name,
           license='MIT',
           packages=['chunkator'],

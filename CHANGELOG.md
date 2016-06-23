@@ -3,6 +3,8 @@
 ## master
 
 * Django 1.8 compatibility, thank you ``tox`` (#5).
+* Compatible with Python 3 (tested with Python 3.4), thx @wo0dyn (#6).
+* Various fixes and added a proper MIT License file (#8).
 
 ## v0.0.5
 

@@ -1,4 +1,4 @@
-import cStringIO
+import six
 
 from django.test import TestCase
 from chunkator import chunkator, MissingPkFieldException
@@ -22,8 +22,8 @@ class ChunkatorTestCase(TestCase):
         for item in chunks:
             self.assertTrue(isinstance(item, Book))
             result.append(item.pk)
-        self.assertEquals(len(result), 20)
-        self.assertEquals(len(result), len(set(result)))  # no duplicates
+        self.assertEqual(len(result), 20)
+        self.assertEqual(len(result), len(set(result)))  # no duplicates
 
         result = []
         # larger chunks
@@ -31,8 +31,8 @@ class ChunkatorTestCase(TestCase):
         for item in chunks:
             self.assertTrue(isinstance(item, Book))
             result.append(item.pk)
-        self.assertEquals(len(result), 20)
-        self.assertEquals(len(result), len(set(result)))  # no duplicates
+        self.assertEqual(len(result), 20)
+        self.assertEqual(len(result), len(set(result)))  # no duplicates
 
         result = []
         # larger than QS chunks
@@ -40,8 +40,8 @@ class ChunkatorTestCase(TestCase):
         for item in chunks:
             self.assertTrue(isinstance(item, Book), "{}".format(item))
             result.append(item.pk)
-        self.assertEquals(len(result), 20)
-        self.assertEquals(len(result), len(set(result)))  # no duplicates
+        self.assertEqual(len(result), 20)
+        self.assertEqual(len(result), len(set(result)))  # no duplicates
 
     def test_chunks_numqueries(self):
         # Make sure we only run 2 queries
@@ -73,8 +73,8 @@ class ChunkatorOrderTestCase(TestCase):
 
     def test_order_by_default(self):
         items = list(chunkator(Book.objects.all(), 10))
-        self.assertEquals(items[0].pk, 1)
-        self.assertEquals(items[1].pk, 2)
+        self.assertEqual(items[0].pk, 1)
+        self.assertEqual(items[1].pk, 2)
 
 
 class ChunkatorUUIDTestCase(TestCase):
@@ -90,8 +90,8 @@ class ChunkatorUUIDTestCase(TestCase):
         for item in chunks:
             self.assertTrue(isinstance(item, User))
             result.append(item.pk)
-        self.assertEquals(len(result), 2)
-        self.assertEquals(len(result), len(set(result)))  # no duplicates
+        self.assertEqual(len(result), 2)
+        self.assertEqual(len(result), len(set(result)))  # no duplicates
 
 
 class ChunkatorValuesTestCase(TestCase):
@@ -107,13 +107,13 @@ class ChunkatorValuesTestCase(TestCase):
         for item in chunks:
             self.assertTrue(isinstance(item, dict))
             result.append(item['pk'])
-        self.assertEquals(len(result), 2)
-        self.assertEquals(len(result), len(set(result)))  # no duplicates
+        self.assertEqual(len(result), 2)
+        self.assertEqual(len(result), len(set(result)))  # no duplicates
 
     def test_chunk_missing_pk(self):
         with self.assertRaises(MissingPkFieldException):
             result = chunkator(User.objects.all().values("name"), 10)
-            result.next()
+            six.next(result)
 
 
 class ChunkatorWhereTest(TestCase):
@@ -124,7 +124,7 @@ class ChunkatorWhereTest(TestCase):
         User.objects.create(name='ChuckNorris')
 
     def test_query_log(self):
-        query_log_output = cStringIO.StringIO()
+        query_log_output = six.StringIO()
         qs = User.objects.all()
         # We loop here only to dig into the generator and force execution
         for item in chunkator(qs, 1, query_log_output):
@@ -132,7 +132,7 @@ class ChunkatorWhereTest(TestCase):
         contents = query_log_output.getvalue()
         query_log_output.close()
         queries = contents.split('\n')
-        self.assertEquals(len(queries), 5, queries)
+        self.assertEqual(len(queries), 5, queries)
         queries = queries[:4]  # the last one is empty string
         for query in queries:
             # Should be 0 for the first query

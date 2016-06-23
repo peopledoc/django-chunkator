@@ -58,7 +58,7 @@ def namespace_packages(project_name):
 
 name = 'django-chunkator'
 readme = read_relative_file('README.rst')
-requirements = []
+requirements = ['six']
 entry_points = {}
 
 
@@ -68,7 +68,20 @@ if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
           description="""Chunk large querysetsinto small chunks, and iterate over them without killing your RAM.""",  # noqa
           long_description=readme,
           classifiers=[
-              "Programming Language :: Python",
+              'Environment :: Web Environment',
+              'Framework :: Django',
+              'Operating System :: OS Independent',
+              'Programming Language :: Python',
+              'Programming Language :: Python :: 2',
+              'Programming Language :: Python :: 2.7',
+              'Programming Language :: Python :: 3',
+              'Programming Language :: Python :: 3.1',
+              'Programming Language :: Python :: 3.2',
+              'Programming Language :: Python :: 3.3',
+              'Programming Language :: Python :: 3.4',
+              'Programming Language :: Python :: 3.5',
+              'Topic :: Internet :: WWW/HTTP',
+              'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
               'License :: OSI Approved :: MIT License',
           ],
           keywords='',
@@ -81,4 +94,5 @@ if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
           include_package_data=True,
           zip_safe=False,
           install_requires=requirements,
-          entry_points=entry_points)
+          entry_points=entry_points,
+    )

@@ -1,4 +1,4 @@
-import cStringIO
+import six
 
 from django.test import TestCase
 from chunkator import chunkator, MissingPkFieldException
@@ -124,7 +124,7 @@ class ChunkatorWhereTest(TestCase):
         User.objects.create(name='ChuckNorris')
 
     def test_query_log(self):
-        query_log_output = cStringIO.StringIO()
+        query_log_output = six.StringIO()
         qs = User.objects.all()
         # We loop here only to dig into the generator and force execution
         for item in chunkator(qs, 1, query_log_output):

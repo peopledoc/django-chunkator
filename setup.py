@@ -58,7 +58,7 @@ def namespace_packages(project_name):
 
 name = 'django-chunkator'
 readme = read_relative_file('README.rst')
-requirements = []
+requirements = ['six']
 entry_points = {}
 
 

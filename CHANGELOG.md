@@ -2,8 +2,11 @@
 
 ## master (unreleased)
 
+**Warning**: this version will be the last to support Django 1.6 or 1.7. Starting of the next version, we'll only support 1.8+.
+
 - Added Django 1.9 support (#9).
 - Python 3.4 jobs are being tested in travis (#10).
+- Deprecate Django 1.6 and 1.7 support (#9).
 
 ## 1.0.0 (2016-06-23)
 

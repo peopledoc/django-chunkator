@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-- Nothing changed yet.
+- Added Django 1.9 suport (#9).
 
 ## 1.0.0 (2016-06-23)
 

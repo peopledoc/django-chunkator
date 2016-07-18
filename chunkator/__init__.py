@@ -2,8 +2,6 @@
 Toolbox for chunking / slicing querysets
 """
 
-from django.db.models.query import ValuesQuerySet
-
 
 class MissingPkFieldException(Exception):
     """
@@ -23,7 +21,10 @@ def chunkator(source_qs, chunk_size, query_log=None):
     CPU-and-RAM-consuming ``len(queryset)`` query.
     """
     pk = None
-    if isinstance(source_qs, ValuesQuerySet):
+    # In django 1.9, _fields is always present and `None` if 'values()' is used
+    # In Django 1.8 and below, _fields will only be present if using `values()`
+    has_fields = hasattr(source_qs, '_fields') and source_qs._fields
+    if has_fields:
         if "pk" not in source_qs._fields:
             raise MissingPkFieldException("The values() call must include the `pk` field")  # noqa
 
@@ -37,7 +38,8 @@ def chunkator(source_qs, chunk_size, query_log=None):
             query_log.write('{page.query}\n'.format(page=page))
         nb_items = 0
         for item in page:
-            if isinstance(queryset, ValuesQuerySet):
+            # source_qs._fields exists *and* is not none when using "values()"
+            if has_fields:
                 pk = item["pk"]
             else:
                 pk = item.pk

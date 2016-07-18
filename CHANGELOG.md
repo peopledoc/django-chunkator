@@ -2,7 +2,8 @@
 
 ## master (unreleased)
 
-- Added Django 1.9 suport (#9).
+- Added Django 1.9 support (#9).
+- Python 3.4 jobs are being tested in travis (#10).
 
 ## 1.0.0 (2016-06-23)
 

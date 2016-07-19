@@ -1,6 +1,19 @@
 """
 Toolbox for chunking / slicing querysets
 """
+import warnings
+
+from distutils.version import StrictVersion
+import django
+
+if StrictVersion(django.get_version()) < StrictVersion('1.8.0'):
+    with warnings.catch_warnings():
+        # This will force the warning to be triggered.
+        warnings.simplefilter("always")
+        warnings.warn(
+            "Django 1.7 and lower versions will soon be deprecated. Please upgrade.",  # noqa
+            PendingDeprecationWarning
+        )
 
 
 class MissingPkFieldException(Exception):

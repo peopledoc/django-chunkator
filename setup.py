@@ -58,7 +58,7 @@ def namespace_packages(project_name):
 
 name = 'django-chunkator'
 readme = read_relative_file('README.rst')
-requirements = ['six']
+requirements = ['six', 'django>=1.8']
 entry_points = {}
 
 
@@ -95,4 +95,4 @@ if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
           zip_safe=False,
           install_requires=requirements,
           entry_points=entry_points,
-    )
+          )

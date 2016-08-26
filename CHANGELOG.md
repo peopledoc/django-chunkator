@@ -1,5 +1,9 @@
 # Changelog
 
+## master (unreleased)
+
+- Nothing changed yet.
+
 ## 1.0.1 (2016-08-26)
 
 **Warning**: this version will be the last to support Django 1.6 or 1.7. Starting of the next version, we'll only support 1.8+.

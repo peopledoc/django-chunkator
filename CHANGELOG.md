@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-- Nothing changed yet.
+- Drop Django 1.6 and 1.7 support (#15).
 
 ## 1.0.1 (2016-08-26)
 

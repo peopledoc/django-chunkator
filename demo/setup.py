@@ -12,7 +12,6 @@ PACKAGES = ['demo_chunkator']
 REQUIREMENTS = [
     'django',
     'django-chunkator',
-    'django-uuidfield'
 ]
 AUTHOR = u'Novapost'
 EMAIL = u'rd@novapost.fr'

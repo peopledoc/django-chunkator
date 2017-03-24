@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import uuid
 from django.db import models
-from uuidfield import UUIDField
 
 
 class Book(models.Model):
@@ -9,5 +9,5 @@ class Book(models.Model):
 
 
 class User(models.Model):
-    uuid = UUIDField(auto=True, primary_key=True, hyphenate=True)
+    uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(max_length=100)

@@ -1,5 +1,9 @@
 # Changelog
 
+# master (unreleased)
+
+Nothing here yet.
+
 ## 1.1.0 (2017-03-25)
 
 - Drop Django 1.6 and 1.7 support (#15).

@@ -4,6 +4,7 @@
 
 - Drop Django 1.6 and 1.7 support (#15).
 - Add Django 1.10 support (#18).
+- Add Python 3.5 support (#17).
 
 ## 1.0.1 (2016-08-26)
 

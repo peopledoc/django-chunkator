@@ -2,7 +2,7 @@
 
 # master (unreleased)
 
-Nothing here yet.
+- Deal with OneToOne Primary Keys (#19).
 
 ## 1.1.0 (2017-03-25)
 

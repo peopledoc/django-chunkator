@@ -1,8 +1,13 @@
 import six
 
 from django.test import TestCase
-from chunkator import chunkator, MissingPkFieldException
-from demo_chunkator.models import Book, User
+
+from chunkator import MissingPkFieldException
+from chunkator import chunkator
+from demo_chunkator.models import Book
+from demo_chunkator.models import Cover
+from demo_chunkator.models import Profile
+from demo_chunkator.models import User
 
 
 class ChunkatorTestCase(TestCase):
@@ -65,24 +70,6 @@ class ChunkatorTestCase(TestCase):
                 self.assertTrue(isinstance(item, Book))
 
 
-class ChunkatorOrderTestCase(TestCase):
-    def setUp(self):
-        super(ChunkatorOrderTestCase, self).setUp()
-        Book.objects.create(
-            title="Guards! Guards!",
-            author="Pratchett, Terry"
-        )
-        Book.objects.create(
-            title="The Player of Games",
-            author="Banks, Iain"
-        )
-
-    def test_order_by_default(self):
-        items = list(chunkator(Book.objects.all(), 10))
-        self.assertEqual(items[0].pk, 1)
-        self.assertEqual(items[1].pk, 2)
-
-
 class ChunkatorUUIDTestCase(TestCase):
 
     def setUp(self):
@@ -98,6 +85,45 @@ class ChunkatorUUIDTestCase(TestCase):
             result.append(item.pk)
         self.assertEqual(len(result), 2)
         self.assertEqual(len(result), len(set(result)))  # no duplicates
+
+
+class ChunkatorOrderTestCase(TestCase):
+    def setUp(self):
+        super(ChunkatorOrderTestCase, self).setUp()
+        book = Book.objects.create(
+            title="The Player of Games",
+            author="Banks, Iain"
+        )
+        Cover.objects.create(book=book, code='player')
+        book = Book.objects.create(
+            title="Guards! Guards!",
+            author="Pratchett, Terry"
+        )
+        Cover.objects.create(book=book, code='guards')
+
+        user = User.objects.create(name='Wonder Woman')
+        Profile.objects.create(user=user, avatar='wonderful')
+        user = User.objects.create(name='Wolverine')
+        Profile.objects.create(user=user, avatar='wolfy')
+
+    def test_order_by_default(self):
+        items = list(chunkator(Book.objects.all(), 10))
+        self.assertEqual(items[0].pk, 1)
+        self.assertEqual(items[1].pk, 2)
+
+        uuids = sorted(User.objects.values_list('pk', flat=True))
+        items = list(chunkator(User.objects.all(), 10))
+        self.assertEqual(items[0].pk, uuids[0])
+        self.assertEqual(items[1].pk, uuids[1])
+
+    def test_order_by_with_onetoone_pk(self):
+        items = list(chunkator(Cover.objects.all(), 10))
+        self.assertEqual(items[0].pk, 1)
+        self.assertEqual(items[1].pk, 2)
+
+        items = list(chunkator(Cover.objects.all(), 10))
+        self.assertEqual(items[0].pk, 1)
+        self.assertEqual(items[1].pk, 2)
 
 
 class ChunkatorValuesTestCase(TestCase):
@@ -133,7 +159,7 @@ class ChunkatorWhereTest(TestCase):
         query_log_output = six.StringIO()
         qs = User.objects.all()
         # We loop here only to dig into the generator and force execution
-        for item in chunkator(qs, 1, query_log_output):
+        for item in chunkator(qs, 1, query_log=query_log_output):
             _ = item  # noqa
         contents = query_log_output.getvalue()
         query_log_output.close()

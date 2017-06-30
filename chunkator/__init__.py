@@ -12,13 +12,9 @@ class MissingPkFieldException(Exception):
     pass
 
 
-def chunkator(source_qs, chunk_size, query_log=None):
+def chunkator_page(source_qs, chunk_size, query_log=None):
     """
-    Yield over a queryset by chunks.
-
-    This method does not involve counting elements or measuring the iterable
-    length. We're saving at least a ``count()`` query on QuerySets, or a
-    CPU-and-RAM-consuming ``len(queryset)`` query.
+    Yield pages of a queryset.
     """
     pk = None
     # In django 1.9, _fields is always present and `None` if 'values()' is used
@@ -42,14 +38,35 @@ def chunkator(source_qs, chunk_size, query_log=None):
         page = queryset[:chunk_size]
         if query_log is not None:
             query_log.write('{page.query}\n'.format(page=page))
-        nb_items = 0
-        for item in page:
-            # source_qs._fields exists *and* is not none when using "values()"
-            if has_fields:
-                pk = item["pk"]
-            else:
-                pk = item.pk
-            nb_items += 1
-            yield item
+        page = list(page)
+        nb_items = len(page)
+
+        if nb_items == 0:
+            raise StopIteration
+
+        last_item = page[-1]
+        # source_qs._fields exists *and* is not none when using "values()"
+        if has_fields:
+            pk = last_item["pk"]
+        else:
+            pk = last_item.pk
+
+        yield page
+
         if nb_items < chunk_size:
             raise StopIteration
+
+
+def chunkator(source_qs, chunk_size, query_log=None):
+    """
+    Yield over a queryset by chunks.
+
+    This method does not involve counting elements or measuring the iterable
+    length. We're saving at least a ``count()`` query on QuerySets, or a
+    CPU-and-RAM-consuming ``len(queryset)`` query.
+    """
+    for page in chunkator_page(source_qs,
+                               chunk_size,
+                               query_log=query_log):
+        for item in page:
+            yield item

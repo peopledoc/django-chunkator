@@ -4,6 +4,7 @@ from django.test import TestCase
 
 from chunkator import MissingPkFieldException
 from chunkator import chunkator
+from chunkator import chunkator_page
 from demo_chunkator.models import Book
 from demo_chunkator.models import Cover
 from demo_chunkator.models import Profile
@@ -170,3 +171,18 @@ class ChunkatorWhereTest(TestCase):
             # Should be 0 for the first query
             # Should occur once for other queries
             self.assertTrue(query.count('."uuid" >') <= 1, query)
+
+
+class ChunkatorPageTest(TestCase):
+    def setUp(self):
+        super(ChunkatorPageTest, self).setUp()
+        for nb in range(3):
+            Book.objects.create(
+                title="Title #{}".format(nb),
+                author="Author #{}".format(nb)
+            )
+
+    def test_chunkator_page(self):
+        qs = Book.objects.all().values('pk')
+        pages = list(chunkator_page(qs, 2))
+        self.assertEqual(pages, [[{'pk': 1}, {'pk': 2}], [{'pk': 3}]])

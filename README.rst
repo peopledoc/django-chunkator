@@ -44,6 +44,14 @@ You can also use ``values()``:
     you'll have several small queries. This will save your RAM instead, because
     you'll not load a huge queryset result before looping on it.
 
+If you want to manipulate the pages directly, you can use `chunkator_page`:
+
+.. code:: python
+
+    from chunkator import chunkator_page
+    queryset = LargeModel.objects.all().values('pk')
+    for page in chunkator_page(queryset, 200):
+        launch_some_task([item['pk'] for item in page])
 
 License
 =======

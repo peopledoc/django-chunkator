@@ -3,6 +3,7 @@
 # master (unreleased)
 
 - Deal with OneToOne Primary Keys (#19).
+- Expose the util function ``chunkator_page``.
 
 ## 1.1.0 (2017-03-25)
 

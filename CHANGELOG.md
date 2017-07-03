@@ -1,9 +1,9 @@
 # Changelog
 
-# master (unreleased)
+# 1.2.0 (2017-07-03)
 
 - Deal with OneToOne Primary Keys (#19).
-- Expose the util function ``chunkator_page``.
+- Expose the util function ``chunkator_page`` (#21).
 
 ## 1.1.0 (2017-03-25)
 

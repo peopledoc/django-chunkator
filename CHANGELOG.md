@@ -1,5 +1,9 @@
 # Changelog
 
+# master (unreleased)
+
+Nothing here yet, stay tuned.
+
 # 1.2.0 (2017-07-03)
 
 - Deal with OneToOne Primary Keys (#19).

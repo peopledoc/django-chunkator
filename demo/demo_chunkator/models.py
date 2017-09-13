@@ -12,7 +12,8 @@ class Book(models.Model):
 
 
 class Cover(models.Model):
-    book = models.OneToOneField(Book, primary_key=True)
+    book = models.OneToOneField(Book, primary_key=True,
+                                on_delete=models.CASCADE)
     code = models.CharField(max_length=20)
 
 
@@ -25,5 +26,6 @@ class User(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, primary_key=True)
+    user = models.OneToOneField(User, primary_key=True,
+                                on_delete=models.CASCADE)
     avatar = models.CharField(max_length=100)

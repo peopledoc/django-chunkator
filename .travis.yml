@@ -1,20 +1,73 @@
-# In order to use the container infrastructure
 sudo: false
 language: python
-# Using Python 3.5 to make sure it's installed.
-python:
-  - 3.5
-env:
-  - TOX_ENV=py27-django18
-  - TOX_ENV=py27-django19
-  - TOX_ENV=py27-django110
-  - TOX_ENV=py34-django18
-  - TOX_ENV=py34-django19
-  - TOX_ENV=py34-django110
-  - TOX_ENV=py35-django18
-  - TOX_ENV=py35-django19
-  - TOX_ENV=py35-django110
-  - TOX_ENV=flake8
-script: tox -e $TOX_ENV
+matrix:
+  fast_finish: true
+  include:
+    # Python version is just for the look on travis.
+    - python: 2.7
+      env: TOXENV=flake8-py27
+
+    - python: 3.4
+      env: TOXENV=flake8-py34
+
+    - python: 2.7
+      env: TOXENV=py27-django18
+
+    - python: 2.7
+      env: TOXENV=py27-django19
+
+    - python: 2.7
+      env: TOXENV=py27-django110
+
+    - python: 2.7
+      env: TOXENV=py27-django111
+
+    - python: 3.3
+      env: TOXENV=py33-django18
+
+    - python: 3.4
+      env: TOXENV=py34-django18
+
+    - python: 3.4
+      env: TOXENV=py34-django19
+
+    - python: 3.4
+      env: TOXENV=py34-django110
+
+    - python: 3.4
+      env: TOXENV=py34-django111
+
+    - python: 3.4
+      env: TOXENV=py34-djangomaster
+
+    - python: 3.5
+      env: TOXENV=py35-django18
+
+    - python: 3.5
+      env: TOXENV=py35-django19
+
+    - python: 3.5
+      env: TOXENV=py35-django110
+
+    - python: 3.5
+      env: TOXENV=py35-django111
+
+    - python: 3.5
+      env: TOXENV=py35-djangomaster
+
+    - python: 3.6
+      env: TOXENV=py36-django111
+
+    - python: 3.6
+      env: TOXENV=py36-djangomaster
+
+  allow_failures:
+    - env: TOXENV=py34-djangomaster
+    - env: TOXENV=py35-djangomaster
+    - env: TOXENV=py36-djangomaster
+
 install:
     - pip install tox
+
+script:
+    - tox -e $TOXENV

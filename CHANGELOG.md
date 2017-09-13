@@ -2,7 +2,8 @@
 
 # master (unreleased)
 
-Nothing here yet, stay tuned.
+- Run tox with Django 1.11 (#22).
+- Run tests with the Django master version (#22).
 
 # 1.2.0 (2017-07-03)
 

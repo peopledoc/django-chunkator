@@ -1,11 +1,15 @@
 # Changelog
 
-# 1.3.0 (2017-09-14)
+# master (unreleased)
+
+Back to dev.
+
+## 1.3.0 (2017-09-14)
 
 - Run tox with Django 1.11 (#22).
 - Run tests with the Django master version (#22).
 
-# 1.2.0 (2017-07-03)
+## 1.2.0 (2017-07-03)
 
 - Deal with OneToOne Primary Keys (#19).
 - Expose the util function ``chunkator_page`` (#21).

@@ -1,6 +1,6 @@
 # Changelog
 
-# master (unreleased)
+# 1.3.0 (2017-09-14)
 
 - Run tox with Django 1.11 (#22).
 - Run tests with the Django master version (#22).

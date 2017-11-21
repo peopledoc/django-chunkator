@@ -88,7 +88,7 @@ if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
           keywords='',
           author='PeopleDoc',
           author_email='rd@people-doc.com',
-          url='https://github.com/novafloss/%s' % name,
+          url='https://github.com/peopledoc/%s' % name,
           license='MIT',
           packages=['chunkator'],
           namespace_packages=namespace_packages(name),

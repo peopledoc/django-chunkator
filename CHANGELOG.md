@@ -2,7 +2,7 @@
 
 # master (unreleased)
 
-Back to dev.
+- Changing Github Organization from ``novafloss`` to ``peopledoc`` (#24)
 
 ## 1.3.0 (2017-09-14)
 

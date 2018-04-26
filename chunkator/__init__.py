@@ -42,7 +42,7 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
         nb_items = len(page)
 
         if nb_items == 0:
-            return -1
+            return
 
         last_item = page[-1]
         # source_qs._fields exists *and* is not none when using "values()"
@@ -54,7 +54,7 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
         yield page
 
         if nb_items < chunk_size:
-            return -1
+            return
 
 
 def chunkator(source_qs, chunk_size, query_log=None):

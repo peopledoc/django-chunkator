@@ -2,7 +2,8 @@
 
 # master (unreleased)
 
-- Changing Github Organization from ``novafloss`` to ``peopledoc`` (#24)
+- Changing Github Organization from ``novafloss`` to ``peopledoc`` (#24),
+- Added documentation to install and bootstrap the demo app.
 
 ## 1.3.0 (2017-09-14)
 

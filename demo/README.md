@@ -16,3 +16,11 @@ This will create the SQLite database and sync its models:
 ```sh
 django-admin migrate --settings=demo_chunkator.settings
 ```
+
+### Feed the "bookstore"
+
+We're providing a sample ``book.json`` fixture, to load into your DB like this:
+
+```sh
+django-admin loaddata --settings=demo_chunkator.settings book.json
+```

@@ -1,5 +1,9 @@
 # Changelog
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## 1.3.1 (2018-05-14)
 
 - Changing Github Organization from ``novafloss`` to ``peopledoc`` (#24),

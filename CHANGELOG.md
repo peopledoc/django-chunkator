@@ -3,7 +3,8 @@
 # master (unreleased)
 
 - Changing Github Organization from ``novafloss`` to ``peopledoc`` (#24),
-- Added documentation to install and bootstrap the demo app.
+- Added documentation to install and bootstrap the demo app (#26),
+- Removed `PendingDeprecationWarning` due to `StopIteration` usage (#23).
 
 ## 1.3.0 (2017-09-14)
 

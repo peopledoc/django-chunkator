@@ -1,6 +1,6 @@
 # Changelog
 
-# master (unreleased)
+## 1.3.1 (2018-05-14)
 
 - Changing Github Organization from ``novafloss`` to ``peopledoc`` (#24),
 - Added documentation to install and bootstrap the demo app (#26),

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from os.path import abspath, dirname, join
+_current_dir = dirname(abspath(__file__))
 
 INSTALLED_APPS = [
     'demo_chunkator',
@@ -8,7 +10,7 @@ INSTALLED_APPS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'demo_chunkator.db',
+        'NAME': join(_current_dir, 'demo_chunkator.db'),
     }
 }
 

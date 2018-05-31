@@ -22,6 +22,6 @@ SECRET_KEY = 'Fake secret.'
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
 )

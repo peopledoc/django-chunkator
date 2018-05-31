@@ -10,13 +10,9 @@ your RAM.
 
 Tested with all the combinations of:
 
-* Python: 2.7, 3.4, 3.5.
-* Django: 1.8 (LTS), 1.9, 1.10, 1.11.
+* Python: 2.7, 3.5, 3.6
+* Django: 1.11, 2, master
 
-Also, tested the following:
-
-* Python 3.6 + Django 1.11
-* Python 3.4, 3.5, 3.6 + Django "master".
 
 Usage
 =====

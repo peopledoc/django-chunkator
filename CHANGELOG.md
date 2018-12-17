@@ -1,6 +1,6 @@
 # Changelog
 
-## master (unreleased)
+## 1.4.0 (2018-12-17)
 
 - Django 2 support
 - Drop support for Django <1.11 and Python <3.5 (we keep 2.7 still)

@@ -58,13 +58,13 @@ def namespace_packages(project_name):
 
 name = 'django-chunkator'
 readme = read_relative_file('README.rst')
-requirements = ['six', 'django>=1.8']
+requirements = ['six', 'django>=1.11']
 entry_points = {}
 
 
 if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
     setup(name=name,
-          version='1.4.0.dev0',
+          version='1.4.0',
           description="""Chunk large QuerySets into small chunks, and iterate over them without killing your RAM.""",  # noqa
           long_description=readme,
           classifiers=[

@@ -4,6 +4,8 @@
 
 - Django 2 support
 - Drop support for Django <1.11 and Python <3.5 (we keep 2.7 still)
+- Confirm support for Django 2.1
+- Add python 3.7 support
 
 ## 1.3.1 (2018-05-14)
 

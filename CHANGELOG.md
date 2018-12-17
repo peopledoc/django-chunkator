@@ -1,5 +1,9 @@
 # Changelog
 
+## master (unreleased)
+
+Nothing to see here yet.
+
 ## 1.4.0 (2018-12-17)
 
 - Django 2 support

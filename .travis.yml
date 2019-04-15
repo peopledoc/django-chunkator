@@ -1,64 +1,18 @@
+dist: xenial
 sudo: false
 language: python
+
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+  - 3.7
+
 matrix:
   fast_finish: true
-  include:
-    # Python version is just for the look on travis.
-    - python: 2.7
-      env: TOXENV=flake8-py27
-
-    - python: 3.5
-      env: TOXENV=flake8-py35
-
-    - python: 2.7
-      env: TOXENV=py27-django111
-
-    - python: 3.5
-      env: TOXENV=py35-django111
-
-    - python: 3.5
-      env: TOXENV=py35-django20
-
-    - python: 3.5
-      env: TOXENV=py35-django21
-
-    - python: 3.5
-      env: TOXENV=py35-djangomaster
-
-    - python: 3.6
-      env: TOXENV=py36-django111
-
-    - python: 3.6
-      env: TOXENV=py36-django20
-
-    - python: 3.6
-      env: TOXENV=py36-django21
-  
-    - python: 3.6
-      env: TOXENV=py36-djangomaster
-
-    - python: 3.7
-      env: TOXENV=py37-django20
-      dist: xenial
-      sudo: true
-
-    - python: 3.7
-      env: TOXENV=py37-django21
-      dist: xenial
-      sudo: true
-
-    - python: 3.7
-      env: TOXENV=py37-djangomaster
-      dist: xenial
-      sudo: true
-
-  allow_failures:
-    - env: TOXENV=py35-djangomaster
-    - env: TOXENV=py36-djangomaster
-    - env: TOXENV=py37-djangomaster
 
 install:
-    - pip install tox
+  - pip install tox tox-travis
 
 script:
-    - tox -e $TOXENV
+  - tox -r

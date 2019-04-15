@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing to see here yet.
+- Confirm support for Django 2.2
 
 ## 1.4.0 (2018-12-17)
 

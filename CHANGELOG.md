@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Confirm support for Django 2.2
+- Add Python 3.8 support (#34).
 
 ## 1.4.0 (2018-12-17)
 

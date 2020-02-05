@@ -1,5 +1,9 @@
 # Changelog
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## 1.5.0 (2020-02-05)
 
 - Confirm support for Django 2.2 (#33).

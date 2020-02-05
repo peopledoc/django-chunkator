@@ -1,8 +1,8 @@
 # Changelog
 
-## master (unreleased)
+## 1.5.0 (2020-02-05)
 
-- Confirm support for Django 2.2
+- Confirm support for Django 2.2 (#33).
 - Add Python 3.8 support (#34).
 
 ## 1.4.0 (2018-12-17)

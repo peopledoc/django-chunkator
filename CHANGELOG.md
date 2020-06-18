@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+- Drop Python 2 Support (#37).
 
 ## 1.5.0 (2020-02-05)
 

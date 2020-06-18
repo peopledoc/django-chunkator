@@ -3,7 +3,6 @@ sudo: false
 language: python
 
 python:
-  - 2.7
   - 3.5
   - 3.6
   - 3.7
@@ -11,6 +10,9 @@ python:
 
 matrix:
   fast_finish: true
+  include:
+  - python: 3.8
+    env: TOXENV=flake8
 
 install:
   - pip install tox tox-travis

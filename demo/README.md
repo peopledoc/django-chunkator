@@ -5,7 +5,7 @@ this demo app is mainly used for running tests, but you may want to install it f
 ## Install
 
 * (create and) activate a virtualenv (using your favorite Python version)
-* from this virtualenv, install your required Django version. e.g.: ``pip install Django==1.11``
+* from this virtualenv, install your required Django version. e.g.: ``pip install Django==2.2``
 * from this directory, install the demo app: ``pip install -e ./``
 
 

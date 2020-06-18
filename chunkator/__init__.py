@@ -17,8 +17,6 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
     Yield pages of a queryset.
     """
     pk = None
-    # In django 1.9, _fields is always present and `None` if 'values()' is used
-    # In Django 1.8 and below, _fields will only be present if using `values()`
     has_fields = hasattr(source_qs, '_fields') and source_qs._fields
     if has_fields:
         if "pk" not in source_qs._fields:

@@ -11,7 +11,7 @@ your RAM.
 Tested with all the combinations of:
 
 * Python: 3.5, 3.6, 3.7, 3.8
-* Django: 1.11, 2, 2.1, 2.2, master
+* Django: 2, 2.1, 2.2, master
 
 
 Usage

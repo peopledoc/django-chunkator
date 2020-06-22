@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 - Drop Python 2 Support (#37).
+- Drop Django 1.11 support (#40).
 
 ## 1.5.0 (2020-02-05)
 

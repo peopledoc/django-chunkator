@@ -5,6 +5,7 @@
 - Drop Python 2 Support (#37).
 - Drop Django 1.11 support (#40).
 - Remove `six` from the requirements (#43).
+- Confirm support for Django 3.0 (#41).
 
 ## 1.5.0 (2020-02-05)
 

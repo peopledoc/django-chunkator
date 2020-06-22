@@ -1,5 +1,9 @@
 # Changelog
 
+## master (unreleased)
+
+Nothing here yet.
+
 ## 2.0.0 (2020-06-22)
 
 - Confirm support for Django 3.0 (#41).

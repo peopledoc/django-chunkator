@@ -1,4 +1,4 @@
-import six
+from io import StringIO
 
 from django.test import TestCase
 
@@ -146,7 +146,7 @@ class ChunkatorValuesTestCase(TestCase):
     def test_chunk_missing_pk(self):
         with self.assertRaises(MissingPkFieldException):
             result = chunkator(User.objects.all().values("name"), 10)
-            six.next(result)
+            next(result)
 
 
 class ChunkatorWhereTest(TestCase):
@@ -157,7 +157,7 @@ class ChunkatorWhereTest(TestCase):
         User.objects.create(name='ChuckNorris')
 
     def test_query_log(self):
-        query_log_output = six.StringIO()
+        query_log_output = StringIO()
         qs = User.objects.all()
         # We loop here only to dig into the generator and force execution
         for item in chunkator(qs, 1, query_log=query_log_output):

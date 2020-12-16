@@ -2,7 +2,7 @@
 
 ## master (unreleased)
 
-Nothing here yet.
+* Drop Python 3.5 support (#50).
 
 ## 2.0.0 (2020-06-22)
 

@@ -2,6 +2,8 @@
 Toolbox for chunking / slicing querysets
 """
 
+from django.db.models.query import FlatValuesListIterable
+
 
 class MissingPkFieldException(Exception):
     """
@@ -21,6 +23,8 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
     if has_fields:
         if "pk" not in source_qs._fields:
             raise MissingPkFieldException("The values() call must include the `pk` field")  # noqa
+    
+    is_flat = source_qs._iterable_class == FlatValuesListIterable
 
     field = source_qs.model._meta.pk
     # set the correct field name:
@@ -36,7 +40,8 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
         page = queryset[:chunk_size]
         if query_log is not None:
             query_log.write('{page.query}\n'.format(page=page))
-        page = list(page)
+        if not is_flat:
+            page = list(page)
         nb_items = len(page)
 
         if nb_items == 0:
@@ -45,7 +50,10 @@ def chunkator_page(source_qs, chunk_size, query_log=None):
         last_item = page[-1]
         # source_qs._fields exists *and* is not none when using "values()"
         if has_fields:
-            pk = last_item["pk"]
+            if is_flat:
+                pk = last_item
+            else:
+                pk = last_item["pk"]
         else:
             pk = last_item.pk
 
